@@ -100,7 +100,7 @@ h2 {
   letter-spacing: -0.03em;
   color: #fff;
 }
-.nav-links { display: flex; gap: 34px; align-items: center; }
+.nav-links { display: flex; gap: 34px; align-items: center; margin-left: auto; }
 .nav-links a {
   color: #fff;
   font-size: 14px;
@@ -141,8 +141,8 @@ h2 {
 .hero h1 {
   font-family: var(--font-display);
   font-weight: 500;
-  font-size: clamp(44px, 8vw, 116px);
-  line-height: 0.98;
+  font-size: clamp(37px, 8vw, 116px);
+  line-height: 1.0;
   letter-spacing: -0.03em;
 }
 .hero h1 .thin { font-weight: 300; }
@@ -349,19 +349,30 @@ section { position: relative; }
   color: rgba(255,255,255,.8); font-weight: 600; margin-bottom: 20px;
 }
 .hero-sub {
-  margin-top: 22px; max-width: 46ch;
+  margin-top: 22px; max-width: 44ch;
   font-size: clamp(16px, 1.8vw, 20px); color: rgba(255,255,255,.85);
 }
 .hero-sub b { color: #fff; font-weight: 700; }
+.hero-price {
+  margin-top: 18px;
+  display: flex; align-items: center; gap: 12px; flex-wrap: wrap;
+  font-size: 15px; color: rgba(255,255,255,.8);
+}
+.hero-price b { font-family: var(--font-display); font-weight: 500; font-size: 18px; color: #fff; }
+.hero-price span { opacity: .45; }
 .hero-actions { margin-top: 34px; display: flex; gap: 14px; flex-wrap: wrap; }
 
 /* CTA в шапке */
 .nav-cta {
+  margin-left: 28px; flex-shrink: 0;
   padding: 9px 18px; border-radius: 100px;
+  color: #fff; font-size: 14px; font-weight: 600;
   background: rgba(255,255,255,.14);
   border: 1px solid rgba(255,255,255,.45);
   opacity: 1 !important;
+  transition: background .3s;
 }
+.nav-cta:hover { background: rgba(255,255,255,.26); }
 
 /* ============================================================
    Премиальная «стеклянная» карточка
@@ -456,18 +467,44 @@ section { position: relative; }
 /* ============================================================
    Адаптив
    ============================================================ */
-@media (max-width: 900px) {
-  .nav-links { display: none; }
-  .manifest .container { grid-template-columns: 1fr; align-items: start; }
-  .steps { grid-template-columns: 1fr; }
-  .card.tall, .card.wide, .card.half { grid-column: span 12; }
-  .card.tall { aspect-ratio: 4/3; }
-  .footer .top { flex-direction: column; }
+
+/* Планшет */
+@media (max-width: 1000px) {
   .features { grid-template-columns: 1fr 1fr; }
 }
 
-@media (max-width: 640px) {
+@media (max-width: 900px) {
+  .nav-links { display: none; }              /* ссылки прячем, кнопка «Обсудить заказ» остаётся */
+  .manifest .container { grid-template-columns: 1fr; align-items: start; gap: 40px; }
+  .about-photo { margin-top: 0; width: 100%; max-width: 480px; }
+  .steps { grid-template-columns: 1fr; }
+  .card.tall, .card.wide, .card.half { grid-column: span 12; }
+  .card.tall { aspect-ratio: 4/3; }
+  .footer .top { flex-direction: column; gap: 32px; }
+}
+
+/* Крупный телефон */
+@media (max-width: 680px) {
   .catalog-grid { grid-template-columns: 1fr; }
   .features { grid-template-columns: 1fr; }
   .warranty { margin: 0; border-radius: 0; }
+  .gallery-head { flex-direction: column; align-items: flex-start; gap: 14px; }
+  .stats { gap: 28px 44px; margin-top: 44px; padding-top: 32px; }
+  .hero-actions { width: 100%; }
+  .hero-actions .btn { flex: 1 1 auto; justify-content: center; }
+  .footer .bottom { flex-direction: column; gap: 8px; }
+  .footer .links { gap: 40px; }
+}
+
+/* Маленький телефон */
+@media (max-width: 430px) {
+  body { font-size: 16px; }
+  .nav { padding: 16px var(--gutter); }
+  .nav .logo .word { font-size: 19px; }
+  .nav .logo svg { height: 22px; }
+  .nav-cta { margin-left: 0; padding: 8px 14px; font-size: 13px; }
+  .hero-actions { flex-direction: column; }
+  .hero-actions .btn { width: 100%; }
+  .cat-card__body { padding: 20px 20px 22px; }
+  .cat-card__top h3 { font-size: 22px; }
 }
