@@ -1,0 +1,145 @@
+/* ============================================================
+   Конструктор дивана — интерфейс
+   ============================================================ */
+
+.builder-page {
+  height: 100svh;
+  overflow: hidden;
+  /* тёплый фон-«комната» в духе Paralives: мягкий свет сверху */
+  background:
+    radial-gradient(120% 90% at 50% 8%, #fbf3e7 0%, #f2e7d6 38%, #e7d8c2 72%, #d8c6ab 100%);
+}
+
+/* Сцена на весь экран */
+#stage { position: fixed; inset: 0; }
+#scene { width: 100%; height: 100%; display: block; touch-action: none; cursor: grab; }
+#scene:active { cursor: grabbing; }
+
+#loading {
+  position: absolute; inset: 0; z-index: 5;
+  display: flex; align-items: center; justify-content: center;
+  font-family: var(--font-display); color: var(--wood-dark); letter-spacing: .02em;
+  background: inherit;
+  transition: opacity .6s ease;
+}
+#loading.hide { opacity: 0; pointer-events: none; }
+
+#drag-hint {
+  position: fixed; left: 50%; bottom: 22px; transform: translateX(-50%);
+  background: rgba(255,255,255,.72); backdrop-filter: blur(8px);
+  color: var(--ink-2); font-size: 13px; padding: 9px 16px; border-radius: 100px;
+  border: 1px solid rgba(0,0,0,.05); box-shadow: 0 6px 22px rgba(80,60,30,.12);
+  pointer-events: none; z-index: 6; max-width: 90vw; text-align: center;
+}
+#drag-hint b { color: var(--wood-dark); }
+
+/* Верхняя строка */
+.builder-top {
+  position: fixed; top: 0; left: 0; right: 0; z-index: 20;
+  display: flex; align-items: center; justify-content: space-between;
+  padding: 18px clamp(18px, 3vw, 34px);
+}
+.builder-top .logo { color: var(--graphite); display: flex; align-items: center; gap: 9px; }
+.builder-top .logo svg { height: 24px; }
+.builder-top .logo .word { font-family: var(--font-display); font-weight: 600; font-size: 20px; letter-spacing: -.03em; color: var(--graphite); }
+.top-actions { display: flex; gap: 10px; }
+.chip {
+  font-family: var(--font-body); font-weight: 600; font-size: 13.5px;
+  padding: 10px 18px; border-radius: 100px; cursor: pointer;
+  background: rgba(255,255,255,.7); backdrop-filter: blur(8px);
+  border: 1px solid rgba(0,0,0,.08); color: var(--ink-2);
+  transition: transform .3s var(--ease), background .25s;
+}
+.chip:hover { transform: translateY(-1px); }
+.chip--dark { background: var(--graphite); color: var(--milk); border-color: var(--graphite); }
+
+/* Панель управления */
+.panel {
+  position: fixed; top: 50%; right: clamp(14px, 2.2vw, 28px); transform: translateY(-50%);
+  z-index: 15;
+  width: min(340px, 92vw);
+  max-height: 84svh;
+  background: rgba(255,255,255,.74);
+  backdrop-filter: blur(18px) saturate(1.1);
+  border: 1px solid rgba(255,255,255,.7);
+  border-radius: 22px;
+  box-shadow: 0 24px 70px rgba(90,68,34,.18);
+}
+.panel-scroll { padding: 22px; overflow-y: auto; max-height: 84svh; }
+.panel-scroll::-webkit-scrollbar { width: 8px; }
+.panel-scroll::-webkit-scrollbar-thumb { background: rgba(0,0,0,.12); border-radius: 8px; }
+
+.grp { padding: 14px 0; border-bottom: 1px solid rgba(0,0,0,.06); }
+.grp:first-child { padding-top: 0; }
+.grp:last-child { border-bottom: 0; padding-bottom: 0; }
+.grp-title {
+  font-size: 12px; letter-spacing: .12em; text-transform: uppercase;
+  color: var(--grey); font-weight: 700; margin-bottom: 12px;
+  display: flex; justify-content: space-between; align-items: baseline;
+}
+.grp-title .val { color: var(--graphite); font-family: var(--font-display); letter-spacing: 0; text-transform: none; font-size: 14px; }
+
+/* Образцы цвета */
+.swatches { display: grid; grid-template-columns: repeat(6, 1fr); gap: 9px; }
+.swatch {
+  aspect-ratio: 1; border-radius: 50%; cursor: pointer;
+  border: 2px solid rgba(0,0,0,.08);
+  box-shadow: inset 0 -3px 6px rgba(0,0,0,.08);
+  transition: transform .25s var(--ease), box-shadow .25s;
+}
+.swatch:hover { transform: scale(1.08); }
+.swatch.active { box-shadow: 0 0 0 2px var(--milk), 0 0 0 4px var(--graphite); }
+
+/* Сегментные переключатели */
+.seg { display: flex; flex-wrap: wrap; gap: 6px; }
+.seg button {
+  flex: 1 1 auto; min-width: 56px;
+  font-family: var(--font-body); font-weight: 600; font-size: 13px;
+  padding: 9px 10px; border-radius: 11px; cursor: pointer;
+  background: rgba(0,0,0,.04); border: 1px solid transparent; color: var(--grey);
+  transition: all .2s var(--ease);
+}
+.seg button:hover { background: rgba(0,0,0,.07); }
+.seg button.active { background: var(--graphite); color: var(--milk); }
+
+/* Степпер модулей/подушек */
+.stepper { display: flex; align-items: center; gap: 12px; }
+.stepper button {
+  width: 38px; height: 38px; border-radius: 11px; cursor: pointer;
+  background: var(--graphite); color: var(--milk); border: 0;
+  font-size: 20px; line-height: 1; transition: transform .2s, opacity .2s;
+}
+.stepper button:hover { transform: translateY(-1px); }
+.stepper button:disabled { opacity: .3; cursor: not-allowed; transform: none; }
+.track { flex: 1; height: 6px; border-radius: 6px; background: rgba(0,0,0,.08); overflow: hidden; }
+.track-fill { height: 100%; background: var(--wood); border-radius: 6px; transition: width .3s var(--ease); }
+
+/* Ползунки */
+input[type="range"] {
+  -webkit-appearance: none; appearance: none; width: 100%; height: 6px;
+  border-radius: 6px; background: rgba(0,0,0,.1); outline: none; cursor: pointer;
+}
+input[type="range"]::-webkit-slider-thumb {
+  -webkit-appearance: none; width: 20px; height: 20px; border-radius: 50%;
+  background: var(--graphite); border: 3px solid var(--milk); box-shadow: 0 2px 6px rgba(0,0,0,.2);
+}
+input[type="range"]::-moz-range-thumb {
+  width: 20px; height: 20px; border-radius: 50%; background: var(--graphite); border: 3px solid var(--milk);
+}
+.dims label { display: block; font-size: 13px; color: var(--grey); margin-bottom: 14px; font-weight: 600; }
+.dims label span { float: right; color: var(--graphite); font-family: var(--font-display); }
+.dims label input { margin-top: 8px; }
+.dims-hint { font-size: 12.5px; color: var(--grey-2); margin-top: 2px; }
+
+.back-fab { display: none; }
+
+/* Адаптив: панель уезжает вниз */
+@media (max-width: 760px) {
+  .panel {
+    top: auto; bottom: 0; right: 0; left: 0; transform: none;
+    width: 100%; max-height: 52svh; border-radius: 22px 22px 0 0;
+  }
+  .panel-scroll { max-height: 52svh; }
+  #drag-hint { bottom: auto; top: 70px; }
+  .builder-top .top-actions .chip { padding: 9px 13px; font-size: 12.5px; }
+}

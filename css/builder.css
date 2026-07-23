@@ -1,0 +1,19 @@
+/* ============================================================
+   Конструктор дивана — доп. стили поверх constructor.css
+   ============================================================ */
+
+/* образцы стены/пола/ножек — прямоугольные плитки */
+.sw-room { grid-template-columns: repeat(5, 1fr); }
+.sw-room .swatch {
+  aspect-ratio: 1; border-radius: 10px;
+  border: 2px solid rgba(0,0,0,.08);
+  box-shadow: inset 0 -3px 6px rgba(0,0,0,.06);
+  cursor: pointer; transition: transform .2s var(--ease), box-shadow .2s;
+}
+.sw-room .swatch:hover { transform: scale(1.06); }
+.sw-room .swatch.active { box-shadow: 0 0 0 2px var(--milk), 0 0 0 4px var(--graphite); }
+
+/* кнопки управления подушками */
+#pillow-shape + .grp-title + .swatches { margin-bottom: 0; }
+.panel .seg button#pil-add { background: var(--graphite); color: var(--milk); }
+.panel .seg button#pil-add:hover { background: #000; }

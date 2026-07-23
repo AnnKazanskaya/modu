@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Конструктор дивана — modu</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700&family=Unbounded:wght@300;400;500;600&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="css/style.css" />
+  <link rel="stylesheet" href="css/constructor.css" />
+
+  <script type="importmap">
+  {
+    "imports": {
+      "three": "https://unpkg.com/three@0.160.0/build/three.module.js",
+      "three/addons/": "https://unpkg.com/three@0.160.0/examples/jsm/"
+    }
+  }
+  </script>
+</head>
+<body class="builder-page">
+
+  <!-- Сцена -->
+  <div id="stage">
+    <div id="loading"><span>собираем диван…</span></div>
+    <canvas id="scene"></canvas>
+    <div id="drag-hint">Тяните за <b>точки</b>, чтобы менять размер · зажмите и крутите, чтобы вращать</div>
+  </div>
+
+  <!-- Верхняя строка -->
+  <header class="builder-top">
+    <a href="index.html" class="logo" aria-label="На главную">
+      <svg viewBox="0 0 118 60" fill="none" aria-hidden="true">
+        <path d="M9 54 V18 C9 9 22 9 24 21 C27 41 42 45 60 37 C80 28 82 16 100 16 C108 16 109 21 109 28 V54"
+              stroke="currentColor" stroke-width="9" stroke-linecap="round" stroke-linejoin="round"/>
+      </svg>
+      <span class="word">modu</span>
+    </a>
+    <div class="top-actions">
+      <button id="btn-reset" class="chip">Сбросить</button>
+      <button id="btn-save" class="chip">Сохранить картинку</button>
+      <a href="order.html" class="chip chip--dark">Оформить заказ</a>
+    </div>
+  </header>
+
+  <!-- Панель управления -->
+  <aside class="panel">
+    <div class="panel-scroll">
+
+      <div class="grp">
+        <div class="grp-title">Цвет ткани</div>
+        <div class="swatches" id="colors"></div>
+      </div>
+
+      <div class="grp">
+        <div class="grp-title">Материал</div>
+        <div class="seg" id="materials">
+          <button data-mat="boucle" class="active">Букле</button>
+          <button data-mat="linen">Лён</button>
+          <button data-mat="velvet">Велюр</button>
+        </div>
+      </div>
+
+      <div class="grp">
+        <div class="grp-title">Модули <span class="val" id="modules-val">3</span></div>
+        <div class="stepper">
+          <button data-act="modules-" aria-label="меньше">−</button>
+          <div class="track"><div class="track-fill" id="modules-fill"></div></div>
+          <button data-act="modules+" aria-label="больше">+</button>
+        </div>
+      </div>
+
+      <div class="grp">
+        <div class="grp-title">Подушки <span class="val" id="pillows-val">3</span></div>
+        <div class="stepper">
+          <button data-act="pillows-">−</button>
+          <div class="track"><div class="track-fill" id="pillows-fill"></div></div>
+          <button data-act="pillows+">+</button>
+        </div>
+      </div>
+
+      <div class="grp">
+        <div class="grp-title">Подлокотники</div>
+        <div class="seg" id="arms">
+          <button data-arms="both" class="active">Оба</button>
+          <button data-arms="left">Слева</button>
+          <button data-arms="right">Справа</button>
+          <button data-arms="none">Нет</button>
+        </div>
+      </div>
+
+      <div class="grp">
+        <div class="grp-title">Кушетка <span class="val" id="daybed-val">нет</span></div>
+        <div class="seg" id="daybed">
+          <button data-daybed="0" class="active">Прямой</button>
+          <button data-daybed="1">Разложить</button>
+        </div>
+      </div>
+
+      <div class="grp">
+        <div class="grp-title">Ножки</div>
+        <div class="seg" id="legs">
+          <button data-leg="floor" class="active">В пол</button>
+          <button data-leg="cylinder">Цилиндр</button>
+          <button data-leg="cone">Конус</button>
+          <button data-leg="cube">Куб</button>
+        </div>
+      </div>
+
+      <div class="grp" id="leg-h-grp">
+        <div class="grp-title">Высота ножек <span class="val" id="legh-val">—</span></div>
+        <input type="range" id="legh" min="3" max="14" value="7" />
+      </div>
+
+      <div class="grp">
+        <div class="grp-title">Размеры</div>
+        <div class="dims">
+          <label>Длина <span id="len-val"></span><input type="range" id="len" min="180" max="420" value="300" /></label>
+          <label>Глубина <span id="dep-val"></span><input type="range" id="dep" min="85" max="140" value="100" /></label>
+          <label>Высота спинки <span id="hgt-val"></span><input type="range" id="hgt" min="55" max="95" value="72" /></label>
+        </div>
+        <p class="dims-hint">…или просто тяните за цветные точки на модели.</p>
+      </div>
+
+    </div>
+  </aside>
+
+  <a href="index.html" class="back-fab" aria-label="Назад">← на главную</a>
+
+  <script type="module" src="js/constructor.js"></script>
+</body>
+</html>

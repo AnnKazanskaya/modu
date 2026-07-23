@@ -1,0 +1,96 @@
+/* ============================================================
+   modu — игра-примерочная «Соберите свой уют»
+   ============================================================ */
+
+.game-page {
+  min-height: 100svh;
+  background:
+    radial-gradient(120% 80% at 50% 0%, #FBF6EE 0%, var(--milk) 50%) fixed,
+    var(--milk);
+}
+
+.order-nav { mix-blend-mode: normal; }
+.order-nav .logo, .order-nav .logo .word { color: var(--graphite); }
+.order-back {
+  font-weight: 600; font-size: 14px; color: var(--grey);
+  padding: 9px 16px; border-radius: 100px; border: 1px solid var(--line);
+  background: rgba(255,255,255,.6); transition: color .3s, border-color .3s;
+}
+.order-back:hover { color: var(--graphite); border-color: var(--graphite); }
+
+.game-wrap {
+  max-width: 980px; margin-inline: auto;
+  padding: clamp(96px, 13vh, 140px) var(--gutter) 80px;
+}
+.game-head { text-align: center; margin-bottom: 30px; }
+.game-head h1 {
+  font-family: var(--font-display); font-weight: 500;
+  font-size: clamp(32px, 5vw, 56px); line-height: 1.02; letter-spacing: -.03em;
+  margin: 10px 0 16px;
+}
+.game-head .lead { margin-inline: auto; }
+
+/* Сцена */
+.stage-frame {
+  position: relative;
+  border-radius: var(--radius);
+  overflow: hidden;
+  border: 1px solid var(--line);
+  box-shadow: 0 24px 70px rgba(60,45,25,.14);
+  background: #A7A98C;
+  aspect-ratio: 16 / 11;
+}
+#game { display: block; width: 100%; height: 100%; cursor: grab; }
+#game:active { cursor: grabbing; }
+.stage-hint {
+  position: absolute; left: 50%; bottom: 12px; transform: translateX(-50%);
+  background: rgba(255,255,255,.8); backdrop-filter: blur(6px);
+  color: var(--grey); font-size: 12.5px; padding: 7px 14px; border-radius: 100px;
+  border: 1px solid rgba(255,255,255,.7); pointer-events: none;
+}
+.stage-toggles { position: absolute; top: 12px; right: 12px; display: flex; gap: 8px; }
+.toggle {
+  width: 40px; height: 40px; border-radius: 12px; cursor: pointer; font-size: 18px;
+  background: rgba(255,255,255,.75); backdrop-filter: blur(8px);
+  border: 1px solid rgba(255,255,255,.8); box-shadow: 0 4px 14px rgba(0,0,0,.15);
+  transition: transform .2s, background .2s;
+}
+.toggle:hover { transform: translateY(-1px); }
+.toggle.active { background: var(--graphite); }
+
+/* Управление */
+.game-controls {
+  margin-top: 26px;
+  display: grid; grid-template-columns: 1fr 1fr; gap: clamp(18px, 2.5vw, 30px);
+}
+.ctrl-title {
+  font-family: var(--font-display); font-weight: 500; font-size: 16px;
+  letter-spacing: -.01em; margin-bottom: 14px; color: var(--graphite);
+}
+.opts { display: flex; flex-wrap: wrap; gap: 9px; }
+.opts button {
+  font-family: var(--font-body); font-weight: 600; font-size: 14px;
+  padding: 11px 16px; border-radius: 100px; cursor: pointer;
+  background: #fff; border: 1px solid var(--line); color: var(--ink-2);
+  transition: transform .25s var(--ease), border-color .25s, background .25s, color .25s;
+}
+.opts button:hover { transform: translateY(-1px); border-color: var(--grey-2); }
+.opts button.active { background: var(--graphite); color: var(--milk); border-color: var(--graphite); }
+
+.swatches { display: flex; flex-wrap: wrap; gap: 10px; }
+.swatches .swatch {
+  width: 38px; height: 38px; border-radius: 50%; cursor: pointer;
+  border: 2px solid rgba(0,0,0,.08); box-shadow: inset 0 -3px 6px rgba(0,0,0,.08);
+  transition: transform .25s var(--ease);
+}
+.swatches .swatch:hover { transform: scale(1.1); }
+.swatches .swatch.active { box-shadow: 0 0 0 2px var(--milk), 0 0 0 4px var(--graphite); }
+
+/* CTA */
+.game-cta {
+  margin-top: 34px; display: flex; gap: 14px; justify-content: center; flex-wrap: wrap;
+}
+
+@media (max-width: 720px) {
+  .game-controls { grid-template-columns: 1fr; }
+}

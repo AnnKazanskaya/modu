@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Конструктор дивана — modu</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700&family=Unbounded:wght@300;400;500;600&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="css/style.css" />
+  <link rel="stylesheet" href="css/constructor.css" />
+  <link rel="stylesheet" href="css/builder.css" />
+
+  <script type="importmap">
+  {
+    "imports": {
+      "three": "https://unpkg.com/three@0.160.0/build/three.module.js",
+      "three/addons/": "https://unpkg.com/three@0.160.0/examples/jsm/"
+    }
+  }
+  </script>
+</head>
+<body class="builder-page">
+
+  <div id="stage">
+    <div id="loading"><span>собираем диван…</span></div>
+    <canvas id="scene"></canvas>
+    <div id="drag-hint">Тяните <b>подушки</b> по дивану · <b>точки</b> меняют размер · зажмите фон и крутите</div>
+  </div>
+
+  <header class="builder-top">
+    <a href="index.html" class="logo" aria-label="На главную">
+      <svg viewBox="0 0 118 60" fill="none" aria-hidden="true">
+        <path d="M9 54 V18 C9 9 22 9 24 21 C27 41 42 45 60 37 C80 28 82 16 100 16 C108 16 109 21 109 28 V54"
+              stroke="currentColor" stroke-width="9" stroke-linecap="round" stroke-linejoin="round"/>
+      </svg>
+      <span class="word">modu</span>
+    </a>
+    <div class="top-actions">
+      <button id="btn-reset" class="chip">Сбросить</button>
+      <button id="btn-save" class="chip">Сохранить картинку</button>
+      <a href="order.html" class="chip chip--dark">Оформить заказ</a>
+    </div>
+  </header>
+
+  <aside class="panel">
+    <div class="panel-scroll">
+
+      <div class="grp">
+        <div class="grp-title">Цвет стены</div>
+        <div class="swatches sw-room" id="wall-colors"></div>
+      </div>
+
+      <div class="grp">
+        <div class="grp-title">Цвет пола</div>
+        <div class="swatches sw-room" id="floor-colors"></div>
+      </div>
+
+      <div class="grp">
+        <div class="grp-title">Форма спинки</div>
+        <div class="seg" id="back-shape">
+          <button data-shape="square" class="active">Квадрат</button>
+          <button data-shape="semicircle">Полукруг</button>
+          <button data-shape="oval">Овал</button>
+        </div>
+      </div>
+
+      <div class="grp">
+        <div class="grp-title">Высота спинки <span class="val" id="bh-val"></span></div>
+        <input type="range" id="bh" min="45" max="100" value="72" />
+      </div>
+
+      <div class="grp" id="arch-grp">
+        <div class="grp-title">Центр дуги <span class="val" id="arch-val">по центру</span></div>
+        <input type="range" id="arch" min="-50" max="50" value="0" />
+        <p class="dims-hint">Работает для полукруглой и овальной спинки.</p>
+      </div>
+
+      <div class="grp">
+        <div class="grp-title">Размеры</div>
+        <div class="dims">
+          <label>Длина <span id="len-val"></span><input type="range" id="len" min="180" max="420" value="300" /></label>
+          <label>Глубина <span id="dep-val"></span><input type="range" id="dep" min="85" max="150" value="100" /></label>
+        </div>
+        <p class="dims-hint">…или тяните за цветные точки на модели.</p>
+      </div>
+
+      <div class="grp">
+        <div class="grp-title">Ножки</div>
+        <div class="seg" id="legtype">
+          <button data-leg="cylinder" class="active">Цилиндр</button>
+          <button data-leg="cone">Конус</button>
+          <button data-leg="cube">Куб</button>
+          <button data-leg="none">Нет</button>
+        </div>
+        <div class="grp-title" style="margin-top:14px">Цвет ножек</div>
+        <div class="swatches sw-room" id="leg-colors"></div>
+      </div>
+
+      <div class="grp">
+        <div class="grp-title">Материал</div>
+        <div class="seg" id="material">
+          <button data-mat="boucle" class="active">Букле</button>
+          <button data-mat="linen">Лён</button>
+          <button data-mat="velvet">Велюр</button>
+        </div>
+        <div class="grp-title" style="margin-top:14px">Цвет ткани</div>
+        <div class="swatches" id="fabric-colors"></div>
+      </div>
+
+      <div class="grp">
+        <div class="grp-title">Подушки <span class="val" id="pil-count">0</span></div>
+        <div class="seg" id="pillow-shape">
+          <button data-pil="square" class="active">Квадрат</button>
+          <button data-pil="round">Круг</button>
+          <button data-pil="bolster">Валик</button>
+        </div>
+        <div class="grp-title" style="margin-top:14px">Цвет подушки</div>
+        <div class="swatches" id="pillow-colors"></div>
+        <div class="seg" style="margin-top:14px">
+          <button id="pil-add">+ Добавить</button>
+          <button id="pil-del">Убрать выбранную</button>
+          <button id="pil-clear">Очистить</button>
+        </div>
+        <p class="dims-hint">Добавьте подушку и перетащите её по дивану. Нажмите на подушку, чтобы выбрать.</p>
+      </div>
+
+    </div>
+  </aside>
+
+  <script type="module" src="js/builder.js"></script>
+</body>
+</html>

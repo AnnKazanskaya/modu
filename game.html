@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Соберите свой уют — modu</title>
+  <meta name="description" content="Игра-примерочная modu: соберите уютную изометрическую комнату — выберите комнату, форму дивана, цвет и ткань." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700&family=Unbounded:wght@300;400;500;600&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="css/style.css" />
+  <link rel="stylesheet" href="css/game.css" />
+
+  <script type="importmap">
+  {
+    "imports": {
+      "three": "https://unpkg.com/three@0.160.0/build/three.module.js",
+      "three/addons/": "https://unpkg.com/three@0.160.0/examples/jsm/"
+    }
+  }
+  </script>
+</head>
+<body class="game-page">
+
+  <header class="nav order-nav">
+    <a href="index.html" class="logo" aria-label="modu">
+      <svg viewBox="0 0 118 60" fill="none" aria-hidden="true">
+        <path d="M9 54 V18 C9 9 22 9 24 21 C27 41 42 45 60 37 C80 28 82 16 100 16 C108 16 109 21 109 28 V54"
+              stroke="currentColor" stroke-width="9" stroke-linecap="round" stroke-linejoin="round"/>
+      </svg>
+      <span class="word">modu</span>
+    </a>
+    <a href="index.html" class="order-back">← на главную</a>
+  </header>
+
+  <main class="game-wrap">
+    <div class="game-head">
+      <p class="eyebrow">Игра-примерочная</p>
+      <h1>Соберите свой уют</h1>
+      <p class="lead">Выберите комнату, форму дивана, цвет и ткань — и обустройте уголок, в котором хочется провести вечер.</p>
+    </div>
+
+    <!-- СЦЕНА -->
+    <div class="stage-frame">
+      <canvas id="game" aria-label="Изометрическая комната с диваном"></canvas>
+      <div class="stage-hint">Тяните, чтобы повернуть комнату</div>
+      <div class="stage-toggles">
+        <button type="button" id="t-cat" class="toggle active" title="Котик">🐱</button>
+        <button type="button" id="t-night" class="toggle" title="Вечер">🌙</button>
+      </div>
+    </div>
+
+    <!-- УПРАВЛЕНИЕ -->
+    <div class="game-controls">
+      <div class="ctrl">
+        <div class="ctrl-title">1 · Комната</div>
+        <div class="opts" id="rooms"></div>
+      </div>
+      <div class="ctrl">
+        <div class="ctrl-title">2 · Форма дивана</div>
+        <div class="opts" id="forms"></div>
+      </div>
+      <div class="ctrl">
+        <div class="ctrl-title">3 · Цвет</div>
+        <div class="swatches" id="colors"></div>
+      </div>
+      <div class="ctrl">
+        <div class="ctrl-title">4 · Материал</div>
+        <div class="opts" id="materials"></div>
+      </div>
+    </div>
+
+    <div class="game-cta">
+      <button type="button" id="save" class="btn btn--ghost">Сохранить картинку</button>
+      <a href="order.html" class="btn" id="order-link">Оформить такой диван <span class="arrow">→</span></a>
+    </div>
+  </main>
+
+  <script type="module" src="js/game.js"></script>
+</body>
+</html>

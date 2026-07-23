@@ -1,0 +1,277 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>modu — диваны под заказ премиум-класса</title>
+  <meta name="description" content="modu — диваны ручной работы под заказ. Каркас из фанеры, проработка каждого шва, ткани премиум-сегмента, жёсткость на выбор. Гарантия на каркас до 10 лет. От 150 000 ₽." />
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700&family=Unbounded:wght@300;400;500;600&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="css/style.css" />
+</head>
+<body>
+
+  <!-- ШАПКА -->
+  <header class="nav">
+    <a href="index.html" class="logo" aria-label="modu">
+      <svg viewBox="0 0 118 60" fill="none" aria-hidden="true">
+        <path d="M9 54 V18 C9 9 22 9 24 21 C27 41 42 45 60 37 C80 28 82 16 100 16 C108 16 109 21 109 28 V54"
+              stroke="#fff" stroke-width="9" stroke-linecap="round" stroke-linejoin="round"/>
+      </svg>
+      <span class="word">modu</span>
+    </a>
+    <nav class="nav-links">
+      <a href="#catalog">Каталог</a>
+      <a href="#approach">Подход</a>
+      <a href="#warranty">Гарантия</a>
+      <a href="order.html" class="nav-cta">Обсудить заказ</a>
+    </nav>
+  </header>
+
+  <!-- HERO -->
+  <section class="hero">
+    <video src="assets/hero.mov" autoplay muted loop playsinline></video>
+    <div class="container hero-inner">
+      <p class="hero-eyebrow reveal">Диваны под заказ · премиум-класс</p>
+      <h1>Диван, сделанный<br><span class="thin">лично под вас</span></h1>
+      <p class="hero-sub">Каркас из фанеры, проработка каждого шва, ткани премиум-сегмента и жёсткость на ваш вкус. Мы не беремся за масс-маркет — каждый диван делаем с душой. <b>От 150 000 ₽.</b></p>
+      <div class="hero-actions">
+        <a href="#catalog" class="btn btn--light">Смотреть каталог <span class="arrow">→</span></a>
+        <a href="order.html" class="btn btn--ghost" style="--fg:#fff; border-color:rgba(255,255,255,.6);">Обсудить заказ</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- МАНИФЕСТ -->
+  <section class="manifest section-pad" id="about">
+    <div class="container">
+      <p class="big reveal">
+        Диван — это не часть интерьера. Это <em>место, где вы отдыхаете каждый вечер.</em>
+        Мы делаем его как дорогой автомобиль: посадка, материалы и ощущение — на высоте.
+      </p>
+      <div class="side reveal">
+        <p class="eyebrow" style="margin-bottom:16px;">Наш подход</p>
+        <p>Каждый заказ — индивидуально под клиента и его желания, но уже с нашими доработками и акцентами на комфорт.</p>
+        <p>Ткань должна дарить только приятные ощущения — никакой полусинтетики. Мягкость — от облака до твёрдой опоры, как вы захотите.</p>
+      </div>
+    </div>
+    <div class="container">
+      <div class="stats reveal">
+        <div class="stat"><div class="num">от 150к&nbsp;₽</div><div class="lbl">индивидуальный заказ</div></div>
+        <div class="stat"><div class="num">до 10 лет</div><div class="lbl">гарантия на каркас</div></div>
+        <div class="stat"><div class="num">вручную</div><div class="lbl">каждый шов и кант</div></div>
+        <div class="stat"><div class="num">0</div><div class="lbl">масс-маркета</div></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- КАТАЛОГ -->
+  <section class="section-pad" id="catalog">
+    <div class="container">
+      <div class="gallery-head reveal">
+        <div>
+          <p class="eyebrow">Каталог</p>
+          <h2>Формы, с которых<br>начинается ваш диван</h2>
+        </div>
+        <p class="lead">Любую форму делаем под ваши размеры, посадку и ткань. Цена ниже — стартовая, итог считаем индивидуально.</p>
+      </div>
+
+      <!-- Положите фото в assets/photos/ с указанными именами — появятся автоматически.
+           Цены и названия — замените на свои реальные. -->
+      <div class="catalog-grid">
+
+        <article class="cat-card reveal">
+          <div class="cat-card__media">
+            <img src="assets/photos/room.jpg" alt="Прямой диван modu" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
+            <div class="ph" style="display:none">фото: room.jpg</div>
+          </div>
+          <div class="cat-card__body">
+            <div class="cat-card__top">
+              <h3>Прямой</h3>
+              <span class="cat-card__price">от 150 000 ₽</span>
+            </div>
+            <p>Классика для гостиной. Чистая линия, глубокая посадка, любая длина под вашу стену.</p>
+            <a href="order.html" class="cat-card__link">Обсудить <span class="arrow">→</span></a>
+          </div>
+        </article>
+
+        <article class="cat-card reveal">
+          <div class="cat-card__media">
+            <img src="assets/photos/studio.jpg" alt="Угловой диван modu" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
+            <div class="ph" style="display:none">фото: studio.jpg</div>
+          </div>
+          <div class="cat-card__body">
+            <div class="cat-card__top">
+              <h3>Угловой</h3>
+              <span class="cat-card__price">от 210 000 ₽</span>
+            </div>
+            <p>Обнимает комнату и зонирует пространство. Кушетка — слева или справа, на ваш выбор.</p>
+            <a href="order.html" class="cat-card__link">Обсудить <span class="arrow">→</span></a>
+          </div>
+        </article>
+
+        <article class="cat-card reveal">
+          <div class="cat-card__media">
+            <img src="assets/photos/detail.jpg" alt="Лаунж-диван modu" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
+            <div class="ph" style="display:none">фото: detail.jpg</div>
+          </div>
+          <div class="cat-card__body">
+            <div class="cat-card__top">
+              <h3>Лаунж</h3>
+              <span class="cat-card__price">от 180 000 ₽</span>
+            </div>
+            <p>Очень глубокая посадка — чтобы утонуть с ногами. Для тех, кто ценит «диван-облако».</p>
+            <a href="order.html" class="cat-card__link">Обсудить <span class="arrow">→</span></a>
+          </div>
+        </article>
+
+        <article class="cat-card reveal">
+          <div class="cat-card__media">
+            <img src="assets/photos/about.jpg" alt="П-образный диван modu" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
+            <div class="ph" style="display:none">фото: about.jpg</div>
+          </div>
+          <div class="cat-card__body">
+            <div class="cat-card__top">
+              <h3>П-образный</h3>
+              <span class="cat-card__price">от 290 000 ₽</span>
+            </div>
+            <p>Для большой семьи и больших вечеров. Собирает всех вместе вокруг одного центра.</p>
+            <a href="order.html" class="cat-card__link">Обсудить <span class="arrow">→</span></a>
+          </div>
+        </article>
+
+        <article class="cat-card cat-card--wide reveal">
+          <div class="cat-card__media">
+            <img src="assets/photos/texture.jpg" alt="Премиальные ткани modu" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
+            <div class="ph" style="display:none">фото: texture.jpg</div>
+          </div>
+          <div class="cat-card__body">
+            <div class="cat-card__top">
+              <h3>Ткани премиум-сегмента</h3>
+            </div>
+            <p>Букле, лён и велюр, приятные на ощупь. Подберём фактуру и цвет под ваш интерьер и посадку.</p>
+            <a href="order.html" class="cat-card__link">Обсудить ткань <span class="arrow">→</span></a>
+          </div>
+        </article>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ПОДХОД / КАЧЕСТВО -->
+  <section class="section-pad approach" id="approach">
+    <div class="container">
+      <div class="gallery-head reveal" style="margin-bottom:56px;">
+        <div>
+          <p class="eyebrow">Что внутри</p>
+          <h2>Качество, которое<br>чувствуется годами</h2>
+        </div>
+        <p class="lead">За каждым диваном — премиальное наполнение, прочный каркас и ручная работа. Здесь нельзя срезать углы.</p>
+      </div>
+
+      <div class="features">
+        <div class="feature glass reveal">
+          <div class="feature__mark">01</div>
+          <h3>Каркас из фанеры</h3>
+          <p>Не ДСП. Прочная основа, которая держит форму и не расшатывается под нагрузкой год за годом.</p>
+        </div>
+        <div class="feature glass reveal">
+          <div class="feature__mark">02</div>
+          <h3>Премиальное наполнение</h3>
+          <p>Посадка, которая возвращает форму и не «проседает». Комфорт, продуманный до мелочей.</p>
+        </div>
+        <div class="feature glass reveal">
+          <div class="feature__mark">03</div>
+          <h3>Каждый шов — вручную</h3>
+          <p>Проработка каждого шва и канта. Аккуратная геометрия, которую видно вблизи.</p>
+        </div>
+        <div class="feature glass reveal">
+          <div class="feature__mark">04</div>
+          <h3>Несколько степеней защиты</h3>
+          <p>Ткань защищена от пятен и износа — диван остаётся как новый дольше.</p>
+        </div>
+        <div class="feature glass reveal">
+          <div class="feature__mark">05</div>
+          <h3>Ткани премиум-сегмента</h3>
+          <p>Только приятные на ощупь материалы. Никакой полусинтетики, которая «холодит» и колется.</p>
+        </div>
+        <div class="feature glass reveal">
+          <div class="feature__mark">06</div>
+          <h3>Жёсткость на выбор</h3>
+          <p>От супермягкого «облака» до твёрдой опоры. Настраиваем посадку под именно вашу спину.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ГАРАНТИЯ -->
+  <section class="warranty" id="warranty">
+    <div class="container reveal">
+      <p class="eyebrow" style="color:rgba(255,255,255,.65)">Гарантия</p>
+      <h2>До 10 лет на каркас.<br>С полной заменой модуля<br>под ключ.</h2>
+      <p class="warranty__sub">Если наступит гарантийный случай — заменим модуль целиком и под ключ. Мы отвечаем за то, что делаем, потому что делаем это на совесть.</p>
+      <a href="order.html" class="btn btn--light">Обсудить ваш диван <span class="arrow">→</span></a>
+    </div>
+  </section>
+
+  <!-- ПОЛНОЭКРАННЫЙ ПЕРЕХОД (сруб) -->
+  <section class="builder-full" id="builder">
+    <a class="builder-full__link" href="order.html" aria-label="Обсудить заказ">
+      <img class="builder-full__img" src="assets/photos/carved.png" alt="modu, вырезанное на срубе" />
+      <div class="builder-full__overlay">
+        <span class="btn">Обсудить ваш диван <span class="arrow">→</span></span>
+      </div>
+    </a>
+  </section>
+
+  <!-- КАК МЫ РАБОТАЕМ -->
+  <section class="section-pad" id="how">
+    <div class="container">
+      <div class="gallery-head reveal" style="margin-bottom:60px;">
+        <h2>Как мы работаем</h2>
+        <p class="lead">От вашей идеи до дивана, в котором хочется проводить вечера.</p>
+      </div>
+      <div class="steps">
+        <div class="step reveal"><div class="n">01</div><h3>Заявка и бриф</h3><p>Обсуждаем вашу идею, комнату, посадку и желаемую жёсткость. Слушаем, чего вы хотите от вечера на диване.</p></div>
+        <div class="step reveal"><div class="n">02</div><h3>Эскиз и расчёт</h3><p>Предлагаем решение с нашими акцентами на комфорт, подбираем ткань и наполнение, считаем точную стоимость.</p></div>
+        <div class="step reveal"><div class="n">03</div><h3>Ручное производство</h3><p>Шьём индивидуально под вас, привозим и собираем. Диван приезжает готовым стать любимым местом в доме.</p></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ПОДВАЛ / КОНТАКТ -->
+  <footer class="footer" id="contact">
+    <div class="container">
+      <div class="top">
+        <div>
+          <p class="eyebrow" style="color:var(--grey-2)">Готовы обсудить ваш диван?</p>
+          <a href="order.html" class="btn btn--light" style="margin-top:18px;">Оставить заявку <span class="arrow">→</span></a>
+        </div>
+        <div class="links">
+          <div class="col">
+            <h4>Навигация</h4>
+            <a href="#catalog">Каталог</a>
+            <a href="#approach">Подход</a>
+            <a href="#warranty">Гарантия</a>
+          </div>
+          <div class="col">
+            <h4>Контакты</h4>
+            <a href="#">Telegram</a>
+            <a href="#">Instagram</a>
+            <a href="mailto:hello@modu.ru">hello@modu.ru</a>
+          </div>
+        </div>
+      </div>
+      <div class="big-word">modu</div>
+      <div class="bottom">
+        <span>© 2026 modu. Диваны под заказ.</span>
+        <span>Сделано с душой</span>
+      </div>
+    </div>
+  </footer>
+
+  <script src="js/main.js"></script>
+</body>
+</html>

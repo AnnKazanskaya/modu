@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Соберём ваш диван — modu</title>
+  <meta name="description" content="Расскажите, какой диван вам нужен — форма, размеры, жёсткость, ткань и бюджет. Соберём индивидуально под вас." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700&family=Unbounded:wght@300;400;500;600&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="css/style.css" />
+  <link rel="stylesheet" href="css/order.css" />
+</head>
+<body class="order-page">
+
+  <!-- ШАПКА -->
+  <header class="nav order-nav">
+    <a href="index.html" class="logo" aria-label="modu">
+      <svg viewBox="0 0 118 60" fill="none" aria-hidden="true">
+        <path d="M9 54 V18 C9 9 22 9 24 21 C27 41 42 45 60 37 C80 28 82 16 100 16 C108 16 109 21 109 28 V54"
+              stroke="currentColor" stroke-width="9" stroke-linecap="round" stroke-linejoin="round"/>
+      </svg>
+      <span class="word">modu</span>
+    </a>
+    <a href="index.html" class="order-back">← на главную</a>
+  </header>
+
+  <main class="order-wrap">
+    <!-- ЛЕВО: форма -->
+    <div class="order-form">
+      <header class="order-head">
+        <p class="eyebrow">Заявка</p>
+        <h1>Соберём ваш диван</h1>
+        <p class="lead">Ответьте на несколько вопросов — это ни к чему не обязывает. Мы свяжемся, предложим решение с акцентом на комфорт и посчитаем точную стоимость.</p>
+      </header>
+
+      <!-- 1. Форма -->
+      <section class="q">
+        <div class="q-title"><span class="q-n">01</span> Форма дивана</div>
+        <div class="opts" data-field="Форма">
+          <button type="button" data-val="Прямой" class="active">Прямой</button>
+          <button type="button" data-val="Угловой">Угловой</button>
+          <button type="button" data-val="Лаунж (глубокий)">Лаунж</button>
+          <button type="button" data-val="П-образный">П-образный</button>
+          <button type="button" data-val="Своя идея">Своя идея</button>
+        </div>
+      </section>
+
+      <!-- 2. Размеры -->
+      <section class="q">
+        <div class="q-title"><span class="q-n">02</span> Размеры</div>
+        <label class="rng">Длина <span id="len-val">300 см</span>
+          <input type="range" id="len" min="180" max="420" value="300" step="10" />
+        </label>
+        <label class="rng">Глубина <span id="dep-val">100 см</span>
+          <input type="range" id="dep" min="85" max="160" value="100" step="5" />
+        </label>
+        <p class="q-hint">Не знаете точно? Оставьте примерно — подскажем на замере.</p>
+      </section>
+
+      <!-- 3. Жёсткость -->
+      <section class="q">
+        <div class="q-title"><span class="q-n">03</span> Жёсткость посадки</div>
+        <div class="opts" data-field="Жёсткость">
+          <button type="button" data-val="Мягкий («облако»)">Мягкий · облако</button>
+          <button type="button" data-val="Средний" class="active">Средний</button>
+          <button type="button" data-val="Твёрдый (опора)">Твёрдый · опора</button>
+        </div>
+      </section>
+
+      <!-- 4. Ткань -->
+      <section class="q">
+        <div class="q-title"><span class="q-n">04</span> Ткань</div>
+        <div class="opts" data-field="Ткань">
+          <button type="button" data-val="Букле" class="active">Букле</button>
+          <button type="button" data-val="Лён">Лён</button>
+          <button type="button" data-val="Велюр">Велюр</button>
+          <button type="button" data-val="Подскажите варианты">Подскажите</button>
+        </div>
+        <div class="q-sub">Оттенок</div>
+        <div class="swatches" id="colors"></div>
+      </section>
+
+      <!-- 5. Бюджет -->
+      <section class="q">
+        <div class="q-title"><span class="q-n">05</span> Бюджет</div>
+        <div class="opts" data-field="Бюджет">
+          <button type="button" data-val="150–250 тыс ₽" class="active">150–250 тыс</button>
+          <button type="button" data-val="250–400 тыс ₽">250–400 тыс</button>
+          <button type="button" data-val="от 400 тыс ₽">от 400 тыс</button>
+          <button type="button" data-val="Обсудим">Обсудим</button>
+        </div>
+      </section>
+
+      <!-- 6. Контакты -->
+      <section class="q">
+        <div class="q-title"><span class="q-n">06</span> Как с вами связаться</div>
+        <input type="text" id="name" class="fld" placeholder="Ваше имя" />
+        <div class="opts" data-field="Способ связи">
+          <button type="button" data-val="Telegram" class="active">Telegram</button>
+          <button type="button" data-val="WhatsApp">WhatsApp</button>
+          <button type="button" data-val="Звонок">Звонок</button>
+        </div>
+        <input type="text" id="contact" class="fld" placeholder="Телефон или ник (@username)" />
+        <textarea id="note" class="fld" rows="3" placeholder="Комментарий: ваша идея, комната, пожелания…"></textarea>
+      </section>
+    </div>
+
+    <!-- ПРАВО: живая сводка -->
+    <aside class="order-summary">
+      <div class="summary-card glass">
+        <div class="summary-eyebrow">Ваша заявка</div>
+        <dl id="summary"></dl>
+        <button type="button" id="send" class="btn">Отправить заявку <span class="arrow">→</span></button>
+        <button type="button" id="copy" class="link-btn">Скопировать текст заявки</button>
+        <p class="summary-note">Нажимая «Отправить», вы открываете готовое письмо нам. Это бесплатно и ни к чему не обязывает.</p>
+      </div>
+    </aside>
+  </main>
+
+  <div id="toast" class="toast"></div>
+
+  <script src="js/order.js"></script>
+</body>
+</html>
