@@ -266,7 +266,7 @@ section { position: relative; }
   overflow: visible;
   /* весь блок подтягиваем вверх — сруб залезает на тёмную секцию гарантии */
   margin-top: clamp(-120px, -9vw, -48px);
-  padding-bottom: clamp(28px, 5vw, 64px);
+  padding-bottom: clamp(44px, 8vw, 96px);
   z-index: 2;
 }
 .builder-full__link { display: block; width: 100%; }
@@ -279,11 +279,14 @@ section { position: relative; }
 .builder-full__link:hover .builder-full__img { transform: scale(1.02); }
 .builder-full__overlay {
   position: static;
-  margin-top: clamp(-56px, -7vw, -24px); /* кнопка ближе к деревяшке */
+  /* кнопка с отступом от сруба — примерно посередине до заголовка ниже */
+  margin-top: clamp(40px, 10vw, 84px);
   display: flex; flex-direction: column; align-items: center; gap: 14px;
   padding: 0 24px;
   text-align: center;
 }
+/* секцию «Как мы работаем» чуть подтягиваем — кнопка садится по центру */
+#how { padding-top: clamp(52px, 7vh, 92px); }
 .builder-full__overlay .eyebrow { color: var(--wood-dark); }
 
 /* (старый карточный вариант — оставлен на случай отката) */
