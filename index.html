@@ -32,7 +32,9 @@
 
   <!-- HERO -->
   <section class="hero">
-    <video src="assets/hero.mov" autoplay muted loop playsinline></video>
+    <video class="hero-video" autoplay muted loop playsinline webkit-playsinline preload="auto">
+      <source src="assets/hero.mp4" type="video/mp4" />
+    </video>
     <div class="container hero-inner">
       <p class="hero-eyebrow reveal">Диваны ручной работы под заказ</p>
       <h1>Диван, сделанный<br><span class="thin">под вас — до сантиметра</span></h1>
@@ -272,6 +274,18 @@
       </div>
     </div>
   </footer>
+
+  <!-- ПРИВЕТСТВЕННЫЙ ПОП-АП -->
+  <div class="modal-overlay" id="welcome" hidden>
+    <div class="modal">
+      <button class="modal__close" id="welcome-close" aria-label="Закрыть">×</button>
+      <p class="modal__eyebrow">Добро пожаловать в modu</p>
+      <h3 class="modal__title">Ваш диван —<br>с приятным бонусом</h3>
+      <p class="modal__text">Дарим <b>скидку на заказ</b> по промокоду <span class="promo">ВЕБ</span>. Просто назовите его, когда будете обсуждать заказ.</p>
+      <a href="order.html" class="btn" id="welcome-cta">Обсудить со скидкой <span class="arrow">→</span></a>
+      <button class="modal__later" id="welcome-later">Пока просто посмотрю</button>
+    </div>
+  </div>
 
   <script src="js/main.js"></script>
 </body>
