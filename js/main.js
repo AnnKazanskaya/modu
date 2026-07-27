@@ -19,7 +19,7 @@
   els.forEach(el => io.observe(el));
 })();
 
-// modu — приветственный поп-ап + разблокировка автозапуска видео
+// modu — экран загрузки + приветственный поп-ап + разблокировка видео
 (() => {
   const video = document.querySelector('.hero video');
   const playVideo = () => {
@@ -29,21 +29,43 @@
     if (p && p.catch) p.catch(() => {});
   };
 
+  // --- приветственный поп-ап ---
   const modal = document.getElementById('welcome');
+  const close = () => { if (modal) { modal.hidden = true; } document.body.style.overflow = ''; playVideo(); };
+  const showWelcome = () => {
+    if (!modal || sessionStorage.getItem('modu_welcome')) return;
+    modal.hidden = false; document.body.style.overflow = 'hidden';
+    sessionStorage.setItem('modu_welcome', '1');
+  };
   if (modal) {
-    const open = () => { modal.hidden = false; document.body.style.overflow = 'hidden'; };
-    const close = () => { modal.hidden = true; document.body.style.overflow = ''; playVideo(); };
-
-    // показываем один раз за сессию
-    if (!sessionStorage.getItem('modu_welcome')) {
-      open();
-      sessionStorage.setItem('modu_welcome', '1');
-    }
     document.getElementById('welcome-close')?.addEventListener('click', close);
     document.getElementById('welcome-later')?.addEventListener('click', close);
     document.getElementById('welcome-cta')?.addEventListener('click', () => { document.body.style.overflow = ''; });
     modal.addEventListener('click', (e) => { if (e.target === modal) close(); });
     document.addEventListener('keydown', (e) => { if (e.key === 'Escape' && !modal.hidden) close(); });
+  }
+
+  // --- экран загрузки ---
+  const pre = document.getElementById('preloader');
+  const MIN_MS = 800;               // минимальное время показа, чтобы не мигал
+  const startedAt = Date.now();
+  const hidePreloader = () => {
+    const wait = Math.max(0, MIN_MS - (Date.now() - startedAt));
+    setTimeout(() => {
+      if (pre) {
+        pre.classList.add('hide');
+        setTimeout(() => { pre.style.display = 'none'; }, 650);
+      }
+      showWelcome();
+    }, wait);
+  };
+  if (pre) {
+    if (document.readyState === 'complete') hidePreloader();
+    else window.addEventListener('load', hidePreloader);
+    // страховка: убрать в любом случае через 6 c
+    setTimeout(() => { if (pre && !pre.classList.contains('hide')) hidePreloader(); }, 6000);
+  } else {
+    showWelcome();
   }
 
   // запасной вариант: первое касание/клик/скролл тоже запускает видео

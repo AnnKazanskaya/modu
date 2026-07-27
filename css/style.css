@@ -509,6 +509,36 @@ section { position: relative; }
 .reveal.in { opacity: 1; transform: none; }
 
 /* ============================================================
+   Экран загрузки
+   ============================================================ */
+#preloader {
+  position: fixed; inset: 0; z-index: 3000;
+  background: #2a221b url('../assets/loader.jpg') center / cover no-repeat;
+  transition: opacity .6s var(--ease);
+}
+#preloader.hide { opacity: 0; pointer-events: none; }
+.preloader__bar {
+  position: absolute; left: 50%; bottom: 13%; transform: translateX(-50%);
+  width: min(180px, 44vw); height: 3px; border-radius: 3px;
+  background: rgba(255,255,255,.22); overflow: hidden;
+}
+.preloader__bar i {
+  position: absolute; top: 0; left: -40%; height: 100%; width: 40%;
+  background: #fff; border-radius: 3px; animation: loadbar 1.05s var(--ease) infinite;
+}
+@keyframes loadbar { 0% { left: -40% } 100% { left: 110% } }
+
+/* CTA под галереей готовых работ */
+.works-cta {
+  margin-top: clamp(40px, 6vw, 72px);
+  display: flex; flex-direction: column; align-items: center; gap: 16px; text-align: center;
+}
+.works-cta p {
+  font-family: var(--font-display); font-weight: 400;
+  font-size: clamp(20px, 2.6vw, 30px); letter-spacing: -.01em;
+}
+
+/* ============================================================
    Адаптив
    ============================================================ */
 

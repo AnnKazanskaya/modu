@@ -13,6 +13,11 @@
 </head>
 <body>
 
+  <!-- ЭКРАН ЗАГРУЗКИ -->
+  <div id="preloader" aria-hidden="true">
+    <div class="preloader__bar"><i></i></div>
+  </div>
+
   <!-- ШАПКА -->
   <header class="nav">
     <a href="index.html" class="logo" aria-label="modu">
@@ -24,6 +29,7 @@
     </a>
     <nav class="nav-links">
       <a href="#catalog">Каталог</a>
+      <a href="#works">Работы</a>
       <a href="#approach">Подход</a>
       <a href="#warranty">Гарантия</a>
     </nav>
@@ -244,6 +250,57 @@
     </div>
   </section>
 
+  <!-- ГОТОВЫЕ РАБОТЫ -->
+  <section class="section-pad" id="works">
+    <div class="container">
+      <div class="gallery-head reveal">
+        <div>
+          <p class="eyebrow">Готовые работы</p>
+          <h2>Уже стоят в домах<br>наших клиентов</h2>
+        </div>
+        <p class="lead">Реальные проекты modu — от компактных прямых до угловых и кроватей. Каждый собран вручную под конкретную комнату.</p>
+      </div>
+
+      <div class="gallery-grid">
+        <figure class="card wide reveal">
+          <img src="assets/photos/room.jpg" alt="Угловой диван modu в гостиной" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
+          <div class="ph" style="display:none">фото: room.jpg</div>
+          <figcaption class="cap"><div class="t">Гостиная в кремовом</div><div class="s">букле · угловой модульный</div></figcaption>
+        </figure>
+        <figure class="card tall reveal">
+          <img src="assets/photos/work-curved.jpg" alt="Изогнутый диван modu" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
+          <div class="ph" style="display:none">фото: work-curved.jpg</div>
+          <figcaption class="cap"><div class="t">Изогнутый</div><div class="s">велюр «сумерки»</div></figcaption>
+        </figure>
+        <figure class="card half reveal">
+          <img src="assets/photos/studio.jpg" alt="Угловой диван с кушеткой" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
+          <div class="ph" style="display:none">фото: studio.jpg</div>
+          <figcaption class="cap"><div class="t">Угловой с кушеткой</div><div class="s">букле · крем</div></figcaption>
+        </figure>
+        <figure class="card half reveal">
+          <img src="assets/photos/detail.jpg" alt="Прямой диван modu" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
+          <div class="ph" style="display:none">фото: detail.jpg</div>
+          <figcaption class="cap"><div class="t">Прямой трёхместный</div><div class="s">оттенок «шалфей»</div></figcaption>
+        </figure>
+        <figure class="card half reveal">
+          <img src="assets/photos/work-bed.jpg" alt="Кровать modu под матрас" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
+          <div class="ph" style="display:none">фото: work-bed.jpg</div>
+          <figcaption class="cap"><div class="t">Кровать под матрас</div><div class="s">мягкое изголовье</div></figcaption>
+        </figure>
+        <figure class="card half reveal">
+          <img src="assets/photos/texture.jpg" alt="Фактура ткани modu" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
+          <div class="ph" style="display:none">фото: texture.jpg</div>
+          <figcaption class="cap"><div class="t">Фактура вблизи</div><div class="s">мягкое букле</div></figcaption>
+        </figure>
+      </div>
+
+      <div class="works-cta reveal">
+        <p>Хотите такой же — или совсем свой?</p>
+        <a href="order.html" class="btn">Обсудить мой диван <span class="arrow">→</span></a>
+      </div>
+    </div>
+  </section>
+
   <!-- ПОДВАЛ / КОНТАКТ -->
   <footer class="footer" id="contact">
     <div class="container">
@@ -256,6 +313,7 @@
           <div class="col">
             <h4>Навигация</h4>
             <a href="#catalog">Каталог</a>
+            <a href="#works">Работы</a>
             <a href="#approach">Подход</a>
             <a href="#warranty">Гарантия</a>
           </div>
