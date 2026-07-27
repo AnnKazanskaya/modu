@@ -431,38 +431,88 @@ section { position: relative; }
 }
 
 /* ============================================================
-   Каталог диванов — карточка с каруселью
+   Каталог диванов — компактные карточки
    ============================================================ */
-.products { display: flex; flex-direction: column; gap: clamp(56px, 8vw, 110px); }
-.product { display: grid; grid-template-columns: 1.25fr 1fr; gap: clamp(24px, 4vw, 60px); align-items: center; }
-.product:nth-child(even) .carousel { order: 2; }          /* чередуем стороны */
-.product__top { display: flex; align-items: baseline; justify-content: space-between; gap: 16px; margin-bottom: 14px; flex-wrap: wrap; }
-.product__top h3 { font-family: var(--font-display); font-weight: 500; font-size: clamp(28px, 3.4vw, 40px); letter-spacing: -.02em; }
-.product__price { font-family: var(--font-display); font-weight: 400; font-size: 17px; color: var(--wood-dark); white-space: nowrap; }
-.product__body p { color: var(--grey); font-size: clamp(15px, 1.5vw, 17px); margin-bottom: 26px; max-width: 46ch; }
-
-.carousel { position: relative; border-radius: var(--radius); overflow: hidden; background: var(--paper); box-shadow: 0 20px 60px rgba(60,45,25,.10); }
-.carousel__track { display: flex; transition: transform .5s var(--ease); }
-.carousel__track img { flex: 0 0 100%; width: 100%; aspect-ratio: 4 / 3; object-fit: cover; display: block; }
-.carousel__btn {
-  position: absolute; top: 50%; transform: translateY(-50%);
-  width: 44px; height: 44px; border-radius: 50%; border: 0; cursor: pointer;
-  background: rgba(255,255,255,.85); backdrop-filter: blur(6px); -webkit-backdrop-filter: blur(6px);
-  color: var(--graphite); font-size: 24px; line-height: 1;
-  display: flex; align-items: center; justify-content: center;
-  box-shadow: 0 4px 16px rgba(0,0,0,.16); transition: background .2s, transform .2s; z-index: 2;
+.pgrid-wrap { position: relative; transition: max-height .5s var(--ease); }
+.pgrid-wrap.collapsed { overflow: hidden; }
+.pgrid { display: grid; grid-template-columns: repeat(4, 1fr); gap: clamp(14px, 1.6vw, 22px); }
+.pgrid-fade {
+  position: absolute; left: 0; right: 0; bottom: 0; height: 190px; pointer-events: none; display: none;
+  background: linear-gradient(180deg, rgba(250,250,249,0) 0%, var(--milk) 82%);
 }
-.carousel__btn:hover { background: #fff; transform: translateY(-50%) scale(1.06); }
-.carousel__btn--prev { left: 14px; }
-.carousel__btn--next { right: 14px; }
-.carousel__dots { position: absolute; left: 0; right: 0; bottom: 14px; display: flex; justify-content: center; gap: 8px; z-index: 2; }
-.carousel__dots button { width: 8px; height: 8px; border-radius: 50%; border: 0; padding: 0; cursor: pointer; background: rgba(255,255,255,.55); box-shadow: 0 1px 4px rgba(0,0,0,.2); transition: background .25s, width .25s; }
-.carousel__dots button.active { background: #fff; width: 22px; border-radius: 6px; }
+.pgrid-wrap.collapsed .pgrid-fade { display: block; }
+.pgrid-more { display: none; justify-content: center; margin-top: 26px; }
+.pgrid-more.show { display: flex; }
 
-@media (max-width: 800px) {
-  .product { grid-template-columns: 1fr; gap: 20px; }
-  .product:nth-child(even) .carousel { order: 0; }
-  .carousel__btn { width: 40px; height: 40px; font-size: 22px; }
+.pcard {
+  cursor: pointer; border-radius: var(--radius); overflow: hidden;
+  background: var(--milk); border: 1px solid var(--line);
+  box-shadow: 0 10px 30px rgba(60,45,25,.06);
+  transition: transform .4s var(--ease), box-shadow .4s var(--ease);
+}
+.pcard:hover { transform: translateY(-4px); box-shadow: 0 22px 55px rgba(60,45,25,.14); }
+.pcard__media {
+  position: relative; aspect-ratio: 4/5; overflow: hidden;
+  background: repeating-linear-gradient(45deg, transparent 0 18px, rgba(0,0,0,.03) 18px 36px), var(--paper);
+}
+.pcard__media img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; opacity: 0; transition: opacity .9s var(--ease); }
+.pcard__media img.active { opacity: 1; }
+.pcard__foot { padding: 12px 14px 15px; }
+.pcard__name { font-family: var(--font-display); font-weight: 500; font-size: clamp(15px, 1.5vw, 18px); letter-spacing: -.01em; line-height: 1.15; }
+.pcard__price { display: block; margin-top: 5px; font-size: 13px; color: var(--wood-dark); font-weight: 600; }
+
+@media (max-width: 1000px) { .pgrid { grid-template-columns: repeat(3, 1fr); } }
+@media (max-width: 680px) {
+  .pgrid { grid-template-columns: repeat(2, 1fr); gap: 12px; }
+  .pcard__foot { padding: 10px 12px 12px; }
+}
+
+/* Раскрытая карточка (модалка) */
+.pmodal {
+  position: fixed; inset: 0; z-index: 1500;
+  display: flex; align-items: center; justify-content: center; padding: 20px;
+  background: rgba(20,16,10,.6); backdrop-filter: blur(6px); -webkit-backdrop-filter: blur(6px);
+  animation: modal-fade .3s var(--ease);
+}
+.pmodal[hidden] { display: none; }
+.pmodal__box {
+  position: relative; width: 100%; max-width: 940px; max-height: 90svh;
+  background: var(--milk); border-radius: 22px; overflow: hidden;
+  display: grid; grid-template-columns: 1.15fr 1fr;
+  box-shadow: 0 40px 100px rgba(20,14,6,.45); animation: modal-pop .4s var(--ease);
+}
+.pmodal__media { position: relative; overflow: hidden; background: var(--paper); }
+.pmodal__track { display: flex; height: 100%; transition: transform .5s var(--ease); }
+.pmodal__track img { flex: 0 0 100%; width: 100%; height: 100%; object-fit: cover; }
+.pmodal__nav {
+  position: absolute; top: 50%; transform: translateY(-50%);
+  width: 42px; height: 42px; border-radius: 50%; border: 0; cursor: pointer;
+  background: rgba(255,255,255,.85); color: var(--graphite); font-size: 23px; line-height: 1;
+  display: flex; align-items: center; justify-content: center; z-index: 2;
+  box-shadow: 0 4px 16px rgba(0,0,0,.16); transition: background .2s;
+}
+.pmodal__nav:hover { background: #fff; }
+.pmodal__nav--prev { left: 12px; } .pmodal__nav--next { right: 12px; }
+.pmodal__dots { position: absolute; left: 0; right: 0; bottom: 14px; display: flex; justify-content: center; gap: 8px; z-index: 2; }
+.pmodal__dots button { width: 8px; height: 8px; border-radius: 50%; border: 0; padding: 0; cursor: pointer; background: rgba(255,255,255,.55); box-shadow: 0 1px 4px rgba(0,0,0,.2); transition: background .25s, width .25s; }
+.pmodal__dots button.active { background: #fff; width: 22px; border-radius: 6px; }
+.pmodal__info { padding: clamp(24px, 3vw, 40px); display: flex; flex-direction: column; justify-content: center; gap: 14px; }
+.pmodal__top { display: flex; align-items: baseline; justify-content: space-between; gap: 14px; flex-wrap: wrap; }
+.pmodal__top h3 { font-family: var(--font-display); font-weight: 500; font-size: clamp(24px, 3vw, 36px); letter-spacing: -.02em; }
+.pmodal__price { font-family: var(--font-display); font-size: 17px; color: var(--wood-dark); white-space: nowrap; }
+.pmodal__info p { color: var(--grey); font-size: clamp(15px, 1.5vw, 17px); }
+.pmodal__info .btn { align-self: flex-start; margin-top: 6px; }
+.pmodal__close {
+  position: absolute; top: 12px; right: 12px; z-index: 4;
+  width: 38px; height: 38px; border-radius: 50%; border: 0; cursor: pointer;
+  background: rgba(255,255,255,.9); color: var(--graphite); font-size: 22px; line-height: 1;
+  display: flex; align-items: center; justify-content: center; box-shadow: 0 4px 14px rgba(0,0,0,.18);
+}
+@media (max-width: 760px) {
+  .pmodal { padding: 0; }
+  .pmodal__box { grid-template-columns: 1fr; grid-template-rows: auto 1fr; max-width: 100%; max-height: 100svh; height: 100svh; border-radius: 0; }
+  .pmodal__media { aspect-ratio: 4/3; }
+  .pmodal__info .btn { align-self: stretch; justify-content: center; }
 }
 
 /* ============================================================

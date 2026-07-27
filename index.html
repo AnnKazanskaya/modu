@@ -87,31 +87,14 @@
         <p class="lead">Каждую модель делаем под ваши размеры, посадку и ткань. Листайте фото — и выбирайте, с чего начать.</p>
       </div>
 
-      <!-- КАТАЛОГ ДИВАНОВ. Чтобы добавить новый диван — скопируйте блок <article class="product">…</article>,
-           поменяйте имя, описание, цену и пути к фото (assets/photos/sofaN-1.jpg …). Карусель заработает сама. -->
-      <div class="products">
-
-        <article class="product reveal">
-          <div class="carousel" data-carousel>
-            <div class="carousel__track">
-              <img src="assets/photos/sofa1-1.jpg" alt="Диван 1 — вид на белом" />
-              <img src="assets/photos/sofa1-2.jpg" alt="Диван 1 в интерьере" />
-              <img src="assets/photos/sofa1-3.jpg" alt="Диван 1 — фактура ткани" />
-            </div>
-            <button class="carousel__btn carousel__btn--prev" aria-label="Назад">‹</button>
-            <button class="carousel__btn carousel__btn--next" aria-label="Вперёд">›</button>
-            <div class="carousel__dots"></div>
-          </div>
-          <div class="product__body">
-            <div class="product__top">
-              <h3>Диван 1</h3>
-              <span class="product__price">от 150 000 ₽</span>
-            </div>
-            <p>Мягкий модульный диван с кушеткой. Глубокая посадка, объёмные подушки, букле кремового оттенка. Собираем под вашу комнату — длину, форму и ткань выбираете вы.</p>
-            <a href="order.html" class="btn">Обсудить этот диван <span class="arrow">→</span></a>
-          </div>
-        </article>
-
+      <!-- Каталог диванов рисуется из данных в js/catalog.js —
+           чтобы добавить новый диван, добавьте объект в массив PRODUCTS там. -->
+      <div class="pgrid-wrap reveal" id="pgridWrap">
+        <div class="pgrid" id="pgrid"></div>
+        <div class="pgrid-fade"></div>
+      </div>
+      <div class="pgrid-more" id="pgridMore">
+        <button class="btn btn--ghost" id="showAll">Смотреть все</button>
       </div>
     </div>
   </section>
@@ -292,6 +275,25 @@
     </div>
   </div>
 
+  <!-- РАСКРЫТАЯ КАРТОЧКА ДИВАНА -->
+  <div class="pmodal" id="pmodal" hidden>
+    <div class="pmodal__box">
+      <button class="pmodal__close" id="pmodalClose" aria-label="Закрыть">×</button>
+      <div class="pmodal__media">
+        <div class="pmodal__track" id="pmTrack"></div>
+        <button class="pmodal__nav pmodal__nav--prev" id="pmPrev" aria-label="Назад">‹</button>
+        <button class="pmodal__nav pmodal__nav--next" id="pmNext" aria-label="Вперёд">›</button>
+        <div class="pmodal__dots" id="pmDots"></div>
+      </div>
+      <div class="pmodal__info">
+        <div class="pmodal__top"><h3 id="pmName"></h3><span class="pmodal__price" id="pmPrice"></span></div>
+        <p id="pmDesc"></p>
+        <a href="order.html" class="btn" id="pmCta">Обсудить этот диван <span class="arrow">→</span></a>
+      </div>
+    </div>
+  </div>
+
   <script src="js/main.js"></script>
+  <script src="js/catalog.js"></script>
 </body>
 </html>
