@@ -431,6 +431,41 @@ section { position: relative; }
 }
 
 /* ============================================================
+   Каталог диванов — карточка с каруселью
+   ============================================================ */
+.products { display: flex; flex-direction: column; gap: clamp(56px, 8vw, 110px); }
+.product { display: grid; grid-template-columns: 1.25fr 1fr; gap: clamp(24px, 4vw, 60px); align-items: center; }
+.product:nth-child(even) .carousel { order: 2; }          /* чередуем стороны */
+.product__top { display: flex; align-items: baseline; justify-content: space-between; gap: 16px; margin-bottom: 14px; flex-wrap: wrap; }
+.product__top h3 { font-family: var(--font-display); font-weight: 500; font-size: clamp(28px, 3.4vw, 40px); letter-spacing: -.02em; }
+.product__price { font-family: var(--font-display); font-weight: 400; font-size: 17px; color: var(--wood-dark); white-space: nowrap; }
+.product__body p { color: var(--grey); font-size: clamp(15px, 1.5vw, 17px); margin-bottom: 26px; max-width: 46ch; }
+
+.carousel { position: relative; border-radius: var(--radius); overflow: hidden; background: var(--paper); box-shadow: 0 20px 60px rgba(60,45,25,.10); }
+.carousel__track { display: flex; transition: transform .5s var(--ease); }
+.carousel__track img { flex: 0 0 100%; width: 100%; aspect-ratio: 4 / 3; object-fit: cover; display: block; }
+.carousel__btn {
+  position: absolute; top: 50%; transform: translateY(-50%);
+  width: 44px; height: 44px; border-radius: 50%; border: 0; cursor: pointer;
+  background: rgba(255,255,255,.85); backdrop-filter: blur(6px); -webkit-backdrop-filter: blur(6px);
+  color: var(--graphite); font-size: 24px; line-height: 1;
+  display: flex; align-items: center; justify-content: center;
+  box-shadow: 0 4px 16px rgba(0,0,0,.16); transition: background .2s, transform .2s; z-index: 2;
+}
+.carousel__btn:hover { background: #fff; transform: translateY(-50%) scale(1.06); }
+.carousel__btn--prev { left: 14px; }
+.carousel__btn--next { right: 14px; }
+.carousel__dots { position: absolute; left: 0; right: 0; bottom: 14px; display: flex; justify-content: center; gap: 8px; z-index: 2; }
+.carousel__dots button { width: 8px; height: 8px; border-radius: 50%; border: 0; padding: 0; cursor: pointer; background: rgba(255,255,255,.55); box-shadow: 0 1px 4px rgba(0,0,0,.2); transition: background .25s, width .25s; }
+.carousel__dots button.active { background: #fff; width: 22px; border-radius: 6px; }
+
+@media (max-width: 800px) {
+  .product { grid-template-columns: 1fr; gap: 20px; }
+  .product:nth-child(even) .carousel { order: 0; }
+  .carousel__btn { width: 40px; height: 40px; font-size: 22px; }
+}
+
+/* ============================================================
    Подход / качество
    ============================================================ */
 .approach { background: linear-gradient(180deg, var(--milk) 0%, #F3EFE8 100%); }

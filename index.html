@@ -82,86 +82,33 @@
       <div class="gallery-head reveal">
         <div>
           <p class="eyebrow">Каталог</p>
-          <h2>Формы, с которых<br>начинается ваш диван</h2>
+          <h2>Наши диваны</h2>
         </div>
-        <p class="lead">Любую форму делаем под ваши размеры, посадку и ткань. Цена ниже — стартовая, итог считаем индивидуально.</p>
+        <p class="lead">Каждую модель делаем под ваши размеры, посадку и ткань. Листайте фото — и выбирайте, с чего начать.</p>
       </div>
 
-      <!-- Положите фото в assets/photos/ с указанными именами — появятся автоматически.
-           Цены и названия — замените на свои реальные. -->
-      <div class="catalog-grid">
+      <!-- КАТАЛОГ ДИВАНОВ. Чтобы добавить новый диван — скопируйте блок <article class="product">…</article>,
+           поменяйте имя, описание, цену и пути к фото (assets/photos/sofaN-1.jpg …). Карусель заработает сама. -->
+      <div class="products">
 
-        <article class="cat-card reveal">
-          <div class="cat-card__media">
-            <img src="assets/photos/room.jpg" alt="Прямой диван modu" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
-            <div class="ph" style="display:none">фото: room.jpg</div>
-          </div>
-          <div class="cat-card__body">
-            <div class="cat-card__top">
-              <h3>Прямой</h3>
-              <span class="cat-card__price">от 150 000 ₽</span>
+        <article class="product reveal">
+          <div class="carousel" data-carousel>
+            <div class="carousel__track">
+              <img src="assets/photos/sofa1-1.jpg" alt="Диван 1 — вид на белом" />
+              <img src="assets/photos/sofa1-2.jpg" alt="Диван 1 в интерьере" />
+              <img src="assets/photos/sofa1-3.jpg" alt="Диван 1 — фактура ткани" />
             </div>
-            <p>Классика для гостиной. Чистая линия, глубокая посадка, любая длина под вашу стену.</p>
-            <a href="order.html" class="cat-card__link">Обсудить <span class="arrow">→</span></a>
+            <button class="carousel__btn carousel__btn--prev" aria-label="Назад">‹</button>
+            <button class="carousel__btn carousel__btn--next" aria-label="Вперёд">›</button>
+            <div class="carousel__dots"></div>
           </div>
-        </article>
-
-        <article class="cat-card reveal">
-          <div class="cat-card__media">
-            <img src="assets/photos/studio.jpg" alt="Угловой диван modu" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
-            <div class="ph" style="display:none">фото: studio.jpg</div>
-          </div>
-          <div class="cat-card__body">
-            <div class="cat-card__top">
-              <h3>Угловой</h3>
-              <span class="cat-card__price">от 210 000 ₽</span>
+          <div class="product__body">
+            <div class="product__top">
+              <h3>Диван 1</h3>
+              <span class="product__price">от 150 000 ₽</span>
             </div>
-            <p>Обнимает комнату и зонирует пространство. Кушетка — слева или справа, на ваш выбор.</p>
-            <a href="order.html" class="cat-card__link">Обсудить <span class="arrow">→</span></a>
-          </div>
-        </article>
-
-        <article class="cat-card reveal">
-          <div class="cat-card__media">
-            <img src="assets/photos/detail.jpg" alt="Лаунж-диван modu" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
-            <div class="ph" style="display:none">фото: detail.jpg</div>
-          </div>
-          <div class="cat-card__body">
-            <div class="cat-card__top">
-              <h3>Лаунж</h3>
-              <span class="cat-card__price">от 180 000 ₽</span>
-            </div>
-            <p>Очень глубокая посадка — чтобы утонуть с ногами. Для тех, кто ценит «диван-облако».</p>
-            <a href="order.html" class="cat-card__link">Обсудить <span class="arrow">→</span></a>
-          </div>
-        </article>
-
-        <article class="cat-card reveal">
-          <div class="cat-card__media">
-            <img src="assets/photos/about.jpg" alt="П-образный диван modu" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
-            <div class="ph" style="display:none">фото: about.jpg</div>
-          </div>
-          <div class="cat-card__body">
-            <div class="cat-card__top">
-              <h3>П-образный</h3>
-              <span class="cat-card__price">от 290 000 ₽</span>
-            </div>
-            <p>Для большой семьи и больших вечеров. Собирает всех вместе вокруг одного центра.</p>
-            <a href="order.html" class="cat-card__link">Обсудить <span class="arrow">→</span></a>
-          </div>
-        </article>
-
-        <article class="cat-card cat-card--wide reveal">
-          <div class="cat-card__media">
-            <img src="assets/photos/texture.jpg" alt="Премиальные ткани modu" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
-            <div class="ph" style="display:none">фото: texture.jpg</div>
-          </div>
-          <div class="cat-card__body">
-            <div class="cat-card__top">
-              <h3>Ткани премиум-сегмента</h3>
-            </div>
-            <p>Букле, лён и велюр, приятные на ощупь. Подберём фактуру и цвет под ваш интерьер и посадку.</p>
-            <a href="order.html" class="cat-card__link">Обсудить ткань <span class="arrow">→</span></a>
+            <p>Мягкий модульный диван с кушеткой. Глубокая посадка, объёмные подушки, букле кремового оттенка. Собираем под вашу комнату — длину, форму и ткань выбираете вы.</p>
+            <a href="order.html" class="btn">Обсудить этот диван <span class="arrow">→</span></a>
           </div>
         </article>
 
