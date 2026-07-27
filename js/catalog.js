@@ -14,9 +14,25 @@ const PRODUCTS = [
     name: 'Синий вечер',
     price: 'от 165 000 ₽',
     desc: 'Глубокий диван в синем велюре с мягкими подушками. Спокойный характер и обволакивающая посадка — для долгих вечеров. Размер и оттенок велюра — под ваш интерьер.',
-    // ВРЕМЕННО одно фото. Положите 3 фото Дивана 2 как sofa2-1.jpg, sofa2-2.jpg, sofa2-3.jpg
-    // и впишите их сюда: ['sofa2-1.jpg', 'sofa2-2.jpg', 'sofa2-3.jpg']
-    photos: ['sofa2-1.jpg'],
+    photos: ['sofa2-1.jpg', 'sofa2-2.jpg', 'sofa2-3.jpg'],
+  },
+  {
+    name: 'Тихий шалфей',
+    price: 'от 155 000 ₽',
+    desc: 'Прямой трёхместный диван в мягком велюре оттенка шалфея. Спокойный природный цвет, чистые линии и глубокая посадка. Длину и ткань подбираем под вас.',
+    photos: ['sofa3-1.jpg'],
+  },
+  {
+    name: 'Медовый сон',
+    price: 'от 140 000 ₽',
+    desc: 'Мягкая кровать с объёмным изголовьем в тёплом букле медового оттенка. Основание — под любой матрас от 160 до 220 см. Уют, в который хочется нырнуть вечером.',
+    photos: ['bed1-1.jpg'],
+  },
+  {
+    name: 'Песочная дюна',
+    price: 'от 145 000 ₽',
+    desc: 'Кровать с фактурным изголовьем песочного оттенка и мягким основанием. Спокойный тёплый характер и опора под любой матрас 160–220 см.',
+    photos: ['bed2-1.jpg', 'bed2-2.jpg'],
   },
 ];
 
@@ -85,9 +101,9 @@ function setupCollapse() {
   const cards = Array.from(grid.children);
   const need = isMobile() && cards.length > MOBILE_PREVIEW && !expanded;
   if (need) {
-    // высота = низ 4-й карточки + «подсматривание» следующего ряда
+    // высота = низ 4-й карточки + «подсматривание» следующего ряда (в тумане)
     const forth = cards[MOBILE_PREVIEW - 1];
-    const h = forth.offsetTop + forth.offsetHeight + 70;
+    const h = forth.offsetTop + forth.offsetHeight + 150;
     wrap.classList.add('collapsed');
     wrap.style.maxHeight = h + 'px';
     moreBox.classList.add('show');
