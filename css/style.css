@@ -151,7 +151,7 @@ h2 {
   z-index: -1;
   background: linear-gradient(180deg, rgba(10,10,10,.15) 0%, rgba(10,10,10,0) 35%, rgba(10,10,10,.55) 100%);
 }
-.hero-inner { padding-top: clamp(100px, 14vh, 150px); padding-bottom: clamp(48px, 9vh, 110px); color: #fff; }
+.hero-inner { padding-top: clamp(70px, 8vh, 82px); padding-bottom: clamp(48px, 9vh, 110px); color: #fff; }
 .hero h1 {
   font-family: var(--font-display);
   font-weight: 500;
@@ -664,7 +664,7 @@ section { position: relative; }
 @media (max-width: 680px) {
   /* hero: контент от верха (под шапкой), а не прижат к низу — иначе налезает на шапку */
   .hero { align-items: flex-start; height: auto; min-height: 100svh; }
-  .hero-inner { padding-top: 92px; padding-bottom: 48px; }
+  .hero-inner { padding-top: 66px; padding-bottom: 48px; }
   .catalog-grid { grid-template-columns: 1fr; }
   .features { grid-template-columns: 1fr; }
   .warranty { margin: 0; border-radius: 0; }
