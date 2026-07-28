@@ -221,10 +221,10 @@ section { position: relative; }
 .manifest .side p + p { margin-top: 18px; }
 
 /* Метрики */
-.stats { display: flex; flex-wrap: wrap; gap: clamp(30px,5vw,80px); margin-top: 60px; border-top: 1px solid var(--line); padding-top: 40px; align-content: flex-start; }
+.stats { display: flex; flex-wrap: wrap; gap: clamp(18px,2.2vw,28px) clamp(28px,5vw,64px); margin-top: 60px; border-top: 1px solid var(--line); padding-top: 40px; align-content: flex-start; }
 
 /* второй блок манифеста: цифрам меньше места, видео — больше */
-.manifest .container:nth-of-type(2) { grid-template-columns: 0.75fr 1.45fr; align-items: start; }
+.manifest .container:nth-of-type(2) { grid-template-columns: 0.62fr 1.6fr; align-items: start; gap: clamp(20px, 3vw, 40px); }
 
 /* Видео «как мы делаем» справа от цифр — без рамки/тени, сливается с фоном, не обрезано */
 .build-video {
@@ -261,7 +261,7 @@ section { position: relative; }
   color: var(--grey-2); font-size: 13px; letter-spacing: .12em; text-transform: uppercase;
   background: repeating-linear-gradient(45deg, transparent 0 18px, rgba(0,0,0,.025) 18px 36px), var(--paper);
 }
-.stat .num { font-family: var(--font-display); font-size: clamp(34px,4vw,52px); font-weight: 500; letter-spacing: -.02em; }
+.stat .num { font-family: var(--font-display); font-size: clamp(34px,4vw,52px); font-weight: 500; letter-spacing: -.02em; white-space: nowrap; }
 .stat .lbl { color: var(--grey-2); font-size: 14px; margin-top: 4px; }
 
 /* ============================================================
