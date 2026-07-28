@@ -1,3 +1,16 @@
+// modu — шапка: прозрачная вверху, матовое стекло после скролла 20px
+(() => {
+  const nav = document.querySelector('.nav');
+  if (!nav) return;
+  const onScroll = () => {
+    const y = window.scrollY || document.documentElement.scrollTop || document.body.scrollTop || 0;
+    nav.classList.toggle('scrolled', y > 20);
+  };
+  onScroll();
+  window.addEventListener('scroll', onScroll, { passive: true });
+  document.addEventListener('scroll', onScroll, { passive: true });
+})();
+
 // modu — главная страница: мягкое появление элементов при скролле
 (() => {
   const els = document.querySelectorAll('.reveal');

@@ -40,7 +40,7 @@ body {
   font-size: 17px;
   line-height: 1.6;
   -webkit-font-smoothing: antialiased;
-  overflow-x: hidden;
+  overflow-x: clip;                 /* не ломает window.scrollY, в отличие от hidden */
 }
 
 img, video { display: block; max-width: 100%; }
@@ -88,40 +88,50 @@ h2 {
   align-items: center;
   justify-content: space-between;
   padding: 16px var(--gutter);
-  /* матовое стекло с размытием фона */
-  background: rgba(250, 250, 249, 0.55);
+  /* вначале прозрачная, белый текст на видео */
+  background: transparent;
+  border-bottom: 1px solid transparent;
+  transition: background .35s var(--ease), backdrop-filter .35s var(--ease), border-color .35s, padding .4s var(--ease);
+}
+/* после скролла (>20px) — матовое стекло с размытием */
+.nav.scrolled {
+  background: rgba(250, 250, 249, 0.6);
   backdrop-filter: blur(18px) saturate(1.3);
   -webkit-backdrop-filter: blur(18px) saturate(1.3);
-  border-bottom: 1px solid rgba(0, 0, 0, 0.05);
-  transition: padding .4s var(--ease);
+  border-bottom-color: rgba(0, 0, 0, 0.06);
 }
-.nav .logo { display: flex; align-items: center; gap: 10px; color: var(--graphite); }
+.nav .logo { display: flex; align-items: center; gap: 10px; color: #fff; transition: color .35s; }
 .nav .logo svg { height: 26px; width: auto; }
 .nav .logo .word {
   font-family: var(--font-display);
   font-weight: 600;
   font-size: 22px;
   letter-spacing: -0.03em;
-  color: var(--graphite);
+  color: #fff;
+  transition: color .35s;
 }
 .nav-links { display: flex; gap: 34px; align-items: center; margin-left: auto; }
 .nav-links a {
-  color: var(--graphite);
+  color: #fff;
   font-size: 14px;
   font-weight: 600;
   letter-spacing: 0.02em;
-  opacity: .78;
-  transition: opacity .3s;
+  opacity: .85;
+  transition: opacity .3s, color .35s;
 }
 .nav-links a:hover { opacity: 1; }
+/* тёмный текст, когда шапка стала матовой */
+.nav.scrolled .logo,
+.nav.scrolled .logo .word,
+.nav.scrolled .nav-links a { color: var(--graphite); }
 
 /* ============================================================
    Hero — видео
    ============================================================ */
 .hero {
   position: relative;
-  height: 100svh;
-  min-height: 600px;
+  height: auto;                 /* растём под контент, чтобы верх не обрезался под шапкой */
+  min-height: 100svh;
   overflow: hidden;
   display: flex;
   align-items: flex-end;
@@ -141,7 +151,7 @@ h2 {
   z-index: -1;
   background: linear-gradient(180deg, rgba(10,10,10,.15) 0%, rgba(10,10,10,0) 35%, rgba(10,10,10,.55) 100%);
 }
-.hero-inner { padding-bottom: clamp(48px, 9vh, 110px); color: #fff; }
+.hero-inner { padding-top: clamp(100px, 14vh, 150px); padding-bottom: clamp(48px, 9vh, 110px); color: #fff; }
 .hero h1 {
   font-family: var(--font-display);
   font-weight: 500;
@@ -369,13 +379,15 @@ section { position: relative; }
 .nav-cta {
   margin-left: 28px; flex-shrink: 0;
   padding: 9px 18px; border-radius: 100px;
-  color: var(--graphite); font-size: 14px; font-weight: 600;
-  background: rgba(255,255,255,.5);
-  border: 1px solid rgba(0,0,0,.14);
+  color: #fff; font-size: 14px; font-weight: 600;
+  background: rgba(255,255,255,.14);
+  border: 1px solid rgba(255,255,255,.45);
   opacity: 1 !important;
-  transition: background .3s, color .3s;
+  transition: background .3s, color .35s, border-color .35s;
 }
-.nav-cta:hover { background: var(--graphite); color: var(--milk); border-color: var(--graphite); }
+.nav-cta:hover { background: rgba(255,255,255,.28); }
+.nav.scrolled .nav-cta { color: var(--graphite); background: rgba(255,255,255,.5); border-color: rgba(0,0,0,.14); }
+.nav.scrolled .nav-cta:hover { background: var(--graphite); color: var(--milk); border-color: var(--graphite); }
 
 /* ============================================================
    Премиальная «стеклянная» карточка
