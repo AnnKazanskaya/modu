@@ -223,12 +223,18 @@ section { position: relative; }
 /* Метрики */
 .stats { display: flex; flex-wrap: wrap; gap: clamp(30px,5vw,80px); margin-top: 60px; border-top: 1px solid var(--line); padding-top: 40px; align-content: flex-start; }
 
-/* Видео «как мы делаем» справа от цифр */
+/* второй блок манифеста: цифрам меньше места, видео — больше */
+.manifest .container:first-of-type { position: relative; z-index: 2; }        /* текст поверх видео */
+.manifest .container:nth-of-type(2) { grid-template-columns: 0.75fr 1.45fr; position: relative; z-index: 1; }
+.manifest .big, .manifest .side { position: relative; z-index: 2; }
+
+/* Видео «как мы делаем» справа от цифр — крупное, заходит под текст */
 .build-video {
-  position: relative; display: block; margin-top: 60px;
+  position: relative; display: block;
+  margin-top: clamp(-320px, -22vw, -150px);   /* поднимаем вверх, немного под буквы */
   border-radius: var(--radius); overflow: hidden; background: #fff;
-  aspect-ratio: 16 / 9;
-  box-shadow: 0 18px 50px rgba(60,45,25,.10);
+  aspect-ratio: 4 / 3;
+  box-shadow: 0 24px 64px rgba(60,45,25,.12);
   transition: transform .5s var(--ease), box-shadow .5s var(--ease);
 }
 .build-video:hover { transform: translateY(-4px); box-shadow: 0 26px 66px rgba(60,45,25,.16); }
@@ -242,7 +248,10 @@ section { position: relative; }
 }
 .build-video__badge .arrow { transition: transform .4s var(--ease); }
 .build-video:hover .build-video__badge .arrow { transform: translateX(4px); }
-@media (max-width: 900px) { .build-video { margin-top: 8px; } }
+@media (max-width: 900px) {
+  .build-video { margin-top: 8px; aspect-ratio: 16 / 10; }
+  .manifest .container:nth-of-type(2) { grid-template-columns: 1fr; }  /* на телефоне цифры и видео в столбик */
+}
 
 /* Фото справа от метрик (под «Философия») */
 .about-photo {
