@@ -113,12 +113,35 @@ function showToast(msg) {
   toastTimer = setTimeout(() => toast.classList.remove('show'), 3200);
 }
 
-// ---------- Отправить (открыть письмо) ----------
-document.getElementById('send').addEventListener('click', () => {
-  const body = encodeURIComponent(buildText());
-  const subject = encodeURIComponent('Заявка на диван — ' + order['Форма']);
-  window.location.href = `mailto:${ORDER_EMAIL}?subject=${subject}&body=${body}`;
-  showToast('Открываем письмо… Если не открылось — нажмите «Скопировать».');
+// ---------- Отправить (заявка уходит в Telegram через send.php) ----------
+const sendBtn = document.getElementById('send');
+sendBtn.addEventListener('click', async () => {
+  const text = buildText();
+  const original = sendBtn.innerHTML;
+  sendBtn.disabled = true;
+  sendBtn.textContent = 'Отправляем…';
+  try {
+    const r = await fetch('send.php', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ text, website: (document.getElementById('website') || {}).value || '' }),
+    });
+    const j = await r.json().catch(() => ({ ok: false }));
+    if (r.ok && j.ok) {
+      sendBtn.textContent = 'Отправлено ✓';
+      showToast('Заявка отправлена! Мы свяжемся с вами.');
+      return;
+    }
+    throw new Error('fail');
+  } catch (e) {
+    // запасной путь — открыть готовое письмо
+    const body = encodeURIComponent(text);
+    const subject = encodeURIComponent('Заявка на диван — ' + order['Форма']);
+    window.location.href = `mailto:${ORDER_EMAIL}?subject=${subject}&body=${body}`;
+    showToast('Не получилось отправить онлайн — открываем письмо. Или нажмите «Скопировать».');
+    sendBtn.disabled = false;
+    sendBtn.innerHTML = original;
+  }
 });
 
 // ---------- Скопировать текст ----------
